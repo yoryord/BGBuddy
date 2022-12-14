@@ -67,10 +67,22 @@ WSGI_APPLICATION = 'BoardGameBuddy.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3new',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3new',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bgbuddy_database',
+        'USER': 'postgres',
+        'PASSWORD': 'Admin12!',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
