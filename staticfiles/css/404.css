@@ -1,0 +1,60 @@
+
+.not-found-img-box {
+
+    width: 100%;
+    margin-top: 120px;
+    display: block;
+
+}
+
+.not-found-img img {
+
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+    width: 50%;
+    height: auto;
+    z-index: 1;
+
+    border-style: double;
+    border-width: 5px;
+    border-color: #d2bc6c;
+    border-radius: 15px;
+
+}
+
+.not-found {
+    /* position: relative; */
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    /* top: 20%;
+    left: 5%; */
+    color: rgb(104, 99, 99);
+    z-index: 2;
+    text-align: center;
+}
+
+.not-found h1 {
+    font-size: 50px;
+    margin-bottom: 30px;
+
+  
+}
+
+.not-found button {
+    color: #ecda71;
+    background-color: #452716;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    
+}
+
+.not-found a {
+    text-decoration: none;
+}

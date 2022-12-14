@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Register</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="login-register-div">
+        <div class="account-edit-box">
+
+            {% if not object.nickname %}
+                <h1> Please complete your account.</h1>
+
+            {% endif %}
+
+            <form method="post" action="{% url 'account-profile-edit' %}" enctype="multipart/form-data">
+                {{ form}}
+                {% csrf_token %}
+                <button>Save changes</button>
+
+            </form>
+
+        </div>
+    </div>
+{% endblock %}

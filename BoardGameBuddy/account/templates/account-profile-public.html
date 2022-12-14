@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {{ object.nickname }}
+
+    {% if object.is_public %}
+        {{ object.first_name }}<br>
+        {{ object.last_name }}<br>
+        {{ object.age }}<br>
+        {{ object.location }}<br>
+        {{ object.personal_interests }}<br>
+    {% else %}
+    {% endif %}
+    <br>
+
+
+
+</body>
+</html>

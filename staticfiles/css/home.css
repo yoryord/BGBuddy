@@ -1,0 +1,256 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+body {
+    background-color: #f3efe1;
+    background-size: cover;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation */
+
+.container {
+    padding: 15px 0;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar {
+    position: fixed;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #452716;
+    background-image: url("../images/nav_background.webp");
+
+    width: 100%;
+
+    border-style: double;
+    border-width: 5px;
+    border-color: #d2bc6c;
+
+    font-size: 16px;
+}
+
+.logo {
+    width: 120px;
+    padding: 0 0 0 0;
+    margin-left: 0.2em;
+    margin-right: 0.2em;
+} 
+
+
+
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    
+}
+
+
+.nav-group .nav-item {
+    list-style-type: none;
+    margin: 0 8px;
+    font-size: 20px;
+}
+.nav-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* left navigation */
+.nav-item a {
+    color: #ecda71;
+    
+    /* color: #a29445; */
+    /* color: #c5c6c7; */
+    text-decoration: none;
+    position: relative;
+}
+
+
+.nav-item a:hover {
+    cursor: pointer;
+    /* color: #a29445; */
+    color: #c5c6c7;
+    /* color: rgb(82, 129, 38);; */
+  
+} 
+
+
+main .container {
+    position: relative;
+    margin-top: 80px;
+    width: 100%;
+    display: flex;
+    /* align-items: flex-start; */
+    justify-content: space-between;
+}
+
+.col-9 {
+    width: 75%;
+    margin: 5% auto;
+    /* margin-bottom: -20px; */
+}
+
+.col-9 .box {
+    
+    margin-bottom: 20px;
+    padding: 50px;
+    position: relative;
+    width: 100%;
+    height: auto;
+    /* min-height: 400px; */
+    display: flex;
+    border: 1px solid rgba(7, 7, 7, 0.24);
+    border-radius: 15px;
+    background-image: url("../images/background.jpg");
+
+    border-style: double;
+    border-width: 5px;
+    border-color: #d2bc6c;
+
+   
+}
+
+.col-9 .box .welcome-message {
+    display: block;
+    float: left;
+    padding: 10px;
+    margin-left: 15px;
+    
+}
+
+.welcome-message h2 {
+    color: #ecda71;
+    font-size: 350%;
+
+    line-height: 1;
+    
+    font-weight: 700;
+    letter-spacing: normal;
+    word-spacing: normal;
+    /* text-transform: uppercase; */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    font-family: "Agency FB", serif;
+    margin-bottom: 60px;
+    -webkit-text-stroke: 1px #452716; /* width and color */
+}
+
+.welcome-message h3 {
+    color: #ecda71;
+    font-size: 270%;
+    line-height: 1;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: normal;
+    word-spacing: normal;
+    /* text-transform: uppercase; */
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    font-family: "Agency FB", serif;
+    -webkit-text-stroke: 1px #452716; /* width and color */
+
+    padding: 25px;
+}
+
+.welcome-image {
+    float: right;
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+footer .footer-section {
+    color: #452716;
+    position: relative;
+    width: 100%;
+    font-size: 15px;
+    /* font-family: sans-serif; */
+    z-index: -2;
+}
+
+/* footer */
+footer {
+    position: fixed;
+    width: 100%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding: 15px;
+    margin-bottom: 10px;
+ 
+
+}
+
+/* .welcome-world {
+    width: 100%;
+    display: inline-block;
+    justify-content: center;
+    /* padding: 25px 15px 20px;
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+} */
+
+/* #welcome-world .welcome-message {
+    display: inline-block;
+    z-index: 999;
+    margin: 0 auto;
+    left: 0;
+    top: 40%;
+    text-align: center;
+    width: 100%
+} */
+
+/* #welcome-world>img {
+    height: auto;
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 60%;
+    margin-left: auto;
+
+} */
+
+/* .welcome-message h2 {
+    color: #ffffff;
+    font-size: 100%;
+
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: uppercase;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    font-family: "Agency FB", serif;
+}
+
+.welcome-message h3 {
+    color: #ffffff;
+    font-size: 100%;
+    line-height: 1;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: uppercase;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    font-family: "Agency FB", serif;
+}
+ */

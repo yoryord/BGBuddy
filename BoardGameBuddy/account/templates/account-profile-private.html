@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+</head>
+<body>
+
+<div>
+
+    <!-- Profile Image -->
+    {% if object.buddyprofile.profile_picture %}
+        <img src="/media/{{ object.buddyprofile.profile_picture }}" alt="profile_photo">
+    {% else %}
+        <img src="{% static 'images/person.png' %}" alt="no_profile_photo">
+    {% endif %}
+
+
+    <p>
+        {{ object.email }}
+    </p><br>
+    {##}
+    {% if object.buddyprofile.is_public %}
+        <h1> Public account</h1>
+    {% else %}
+        <h1> Private account</h1>
+    {% endif %}
+    <br>
+    {{ object.buddyprofile.nickname }}<br>
+
+    {% if object.buddyprofile.first_name %}
+        {{ object.buddyprofile.first_name }}
+    {% endif %}<br>
+    {% if object.buddyprofile.last_name %}
+        {{ object.buddyprofile.last_name }}
+    {% endif %}<br>
+    {{ object.buddyprofile.age }}<br>
+    {{ object.buddyprofile.location }}<br>
+    {% if object.buddyprofile.personal_interests %}
+        {{ object.buddyprofile.personal_interests }}
+    {% endif %}<br>
+
+    <a href="{% url 'account-profile-edit' %}">edit</a>
+    <a href="{% url 'account-password-change' %}">password change</a>
+    <a href="{% url 'account-delete' %}">delete</a>
+
+
+</div>
+
+</body>
+</html>

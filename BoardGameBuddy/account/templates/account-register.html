@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Register</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="login-register-div">
+        <div class="login-register-box">
+            <h1>Board Game Buddy</h1>
+
+            <form method="post" action="{% url 'account-register' %}">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <button>Register</button>
+            </form>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Account Delete</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="login-register-div">
+    <div class="account-delete-box">
+
+        <h1>Are you sure you want to delete the account?</h1>
+        <form method="post" action="{% url 'account-delete' %}">
+
+            {% csrf_token %}
+            <button>Delete</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

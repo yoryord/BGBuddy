@@ -1,0 +1,30 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Lost...</title>
+{% endblock %}
+
+{% block content %}
+
+    <!-- 404 page -->
+    <div class="not-found-img-box">
+        <div class="not-found-img">
+            <img src="{% static 'images/404.jpg' %}" alt="404 not found">
+        </div>
+
+        <div class="not-found">
+            <h1>
+                Seems you are lost...<br> try looking for another way.
+            </h1>
+
+            <h3>Error 404 - not found. {{ exception }}.</h3>
+            <!-- Link to Home Page -->
+            <a href="{% url 'home-page' %}">
+                <button>Return to Board Game Buddy</button>
+            </a>
+        </div>
+    </div>
+    <!-- End 404 page -->
+{% endblock %}

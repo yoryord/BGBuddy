@@ -1,0 +1,40 @@
+
+{% load game_extras %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game details</title>
+</head>
+<body>
+
+<div>
+
+    <img src="{{ game.photo_url }}" alt="game {{ game.pk }}">
+
+
+    <p id="game_{{ game.pk }}">{{ game.title }}</p>
+    <p>{{ game.description }}</p>
+    <p>{{ game.release_year }}</p>
+    <p>{{ game.genre }}</p>
+    <p>{{ game.max_players }}</p>
+    <p>{{ game.complexity }}</p>
+    <p>{{ game.publisher }}</p>
+
+    {% if game.pk in user_rated_games_by_pk %}
+        <p>You rated this game at: {{ game.gamerating_set.filter|filter_by_buddy:user }}</p>
+
+    {% else %}
+        <form method="post" action="{% url 'game-rate' game.pk %}">
+            {{ form }}
+            {% csrf_token %}
+
+            <button>rate</button>
+
+        </form>
+    {% endif %}
+</div>
+
+</body>
+</html>

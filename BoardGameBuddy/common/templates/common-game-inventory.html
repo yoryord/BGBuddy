@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Games Inventory</title>
+</head>
+<body>
+
+<!-- Start Searchbar Form -->
+<form class="searchbar" method="get">
+    {{ game_searching }}
+
+    {#                <input type="text" placeholder="Search by pet name...">#}
+    <button>
+        <img src="/staticfiles/images/search.png" height="18" alt="img2">
+    </button>
+</form>
+<!-- End Searchbar Form -->
+
+{% if not object_list %}
+    <h1>No games with title "{{ searched_title }}" found ...</h1>
+
+{% else %}
+    <ul>
+        {% for game in object_list %}
+            <li id="game_{{ game.pk }}">
+
+                <a href="{% url 'game-details' game.slug %}">{{ game.title }}</a>
+                {% if game.pk in user_liked_games_by_pk %}
+                    <p><a href="{% url 'game-like' game.pk %}">liked</a></p>
+                {% else %}
+                    <button><a href="{% url 'game-like' game.pk %}">like</a></button>
+                {% endif %}
+                <p class="likes">{{ game.gamelike_set.count }} likes</p>
+
+                 <p class="avr-rating">{{ game.get_average_rating|floatformat:2}} average rating</p>
+            </li>
+
+
+        {% endfor %}
+    </ul>
+{% endif %}
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game add</title>
+</head>
+<body>
+
+<form action="{% url 'game-add' %}" method="post">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button>Add game</button>
+</form>
+
+</body>
+</html>

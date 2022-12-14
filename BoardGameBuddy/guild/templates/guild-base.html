@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Base</title>
+</head>
+<body>
+
+    {% if buddy.has_guild %}
+        {% for guild in guilds %}
+            <ul>
+                <li>
+                    <a href="{% url 'details-guild' guild.slug %}">{{ guild }}</a>
+                </li>
+            </ul>
+        {% endfor %}
+    {% else %}
+        <h1>You are lonely adventurer in this world....</h1>
+
+        <h2> Do you want to establish your company?</h2>
+    {% endif %}
+    <a href="{% url 'create-guild' %}">Establish a new guild</a>
+
+
+
+</body>
+</html>

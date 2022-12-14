@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Master</title>
+</head>
+<body>
+
+{{ object.guild_name }} - <a href="{% url 'edit-guild' object.slug %}">edit</a>
+ <a href="{% url 'delete-guild' object.slug %}">delete</a>
+
+<br>
+Admin:
+{% for admin in admins %}
+    <ul>
+        <li>
+            {{ admin }}
+        </li>
+    </ul>
+{% endfor %}
+
+Members:
+{% for member in members %}
+    <ul>
+        <li>
+            {{ member }} - <a href="{% url  'kick-from-guild' pk=member.pk slug=object.slug %}">kick</a>
+        </li>
+    </ul>
+{% endfor %}
+
+Requests:
+
+{% for req in join_requests %}
+    <ul>
+        <li>
+            request from <a href="{% url 'account-profile-public' req.from_buddy %}">{{ req.from_buddy }}</a>
+            <br>
+            <a href="{% url 'request-accept' req.pk %}">accept</a>
+            <br>
+            <a href="{% url 'request-reject' req.pk %}">reject</a>
+        </li>
+    </ul>
+{% empty %}
+    No pending requests
+{% endfor %}
+
+</body>
+</html>

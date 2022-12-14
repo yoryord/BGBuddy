@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon.ico' %}">
+
+    {% block title %}
+        <title></title>
+    {% endblock %}
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+<header>
+
+    <nav class="navbar">
+        <div class="container">
+
+            <a href="{% url 'home-page' %}"><img src="{% static 'images/logo.png' %}" alt="Logo" class="logo"></a>
+
+            <div class="nav-links">
+                <ul class="nav-group">
+                    <li class="nav-item"><a href="{% url 'game-inventory' %}">Games</a></li>
+                    <li class="nav-item"><a href="{% url 'common-grate-hall' %}">Great Hall</a></li>
+
+                    {% if user.is_authenticated %}
+                        <!--Only for user with created profile-->
+
+                        <li class="nav-item"><a href="{% url 'base-guild' %}">Guild</a></li>
+                        <li class="nav-item"><a href="{% url 'account-profile' %}">Profile</a></li>
+                        <li class="nav-item"><a href="{% url 'account-logout' %}">Logout</a></li>
+
+                    {% else %}
+                        <li class="nav-item"><a href="{% url 'account-login' %}">Login/Register</a></li>
+                    {% endif %}
+
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+<!-- End Navigation Bar -->
+
+<!-- Main Content -->
+
+<main>
+
+    {% block content %}
+    {% endblock %}
+
+</main>
+
+
+<!-- Footer -->
+<footer>
+        <span class="footer-section">
+            <div>Project of Yordan Yordanov </div>
+            <div>Python Web Framework - December 2022 </div>
+        </span>
+</footer>
+<!-- End Footer -->
+
+
+</body>
+
+</html>

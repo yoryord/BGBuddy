@@ -1,0 +1,88 @@
+{% load guild_extras %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guild details</title>
+</head>
+<body>
+
+
+<div>
+
+    <img src="/media/{{ object.guild_picture }}" alt="guild {{ object.pk }}">
+
+
+    <p it="guild_{{ object.slug }}">{{ object.guild_name }}</p>
+    <p>{{ object.guild_description }}</p>
+    <p>{{ object.location }}</p>
+    <p>{{ object.genre }}</p>
+    Owned games:<br>
+    <ul>
+        {% for game in object.list_of_owned_games.all %}
+            <li>{{ game }}</li>
+        {% endfor %}
+    </ul>
+
+
+    Members:
+    {% for member in members %}
+        <ul>
+            <li>
+                {{ member }} {% if object|admin_check:member %}<span>(Admin)</span>{% endif %}
+            </li>
+        </ul>
+    {% endfor %}
+
+    {% if is_member %}
+        You are a member. <a href="{% url 'leave-guild' object.slug %}">Leave the guild?</a>
+    {% else %}
+
+        {% if join_request %}
+            You have already sent your request on {{ join_request.date_created }}
+        {% else %}
+            <form method="post" action="{% url 'request-joining-guild' object.slug %}">
+                {% csrf_token %}
+                <button>Request joining the guild</button>
+
+            </form>
+        {% endif %}
+    {% endif %}
+</div>
+
+
+{% if is_admin %}
+    <a href="{% url 'guild-master-board'  object.slug %}">master page</a>
+{% endif %}
+</body>
+</html>
+
+{% if is_member %}
+<!-- Start Add Comments Form -->
+<form method="post" action="{% url 'guild-message' object.slug %} ">
+    {{ message_form }}
+    {% csrf_token %}
+
+
+    <button type="submit">Post</button>
+</form>
+
+<!-- End Add Comments Form -->
+
+
+Messages:
+
+    {% for message in guild_messages %}
+        <ul>
+            <li>
+                {{ message.buddy }} wrote:
+                <br>
+                {{ message }}
+                <br>
+                at {{ message.date_and_time_of_publication }}
+            </li>
+        </ul>
+    {% endfor %}
+{% else %}
+{% endif %}
