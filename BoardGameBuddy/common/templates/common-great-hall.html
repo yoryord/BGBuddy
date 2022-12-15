@@ -1,38 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Great Hall</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-<!-- Start Searchbar Form -->
-<form class="searchbar" method="post">
-    {{ search_form }}
-    {% csrf_token %}
-    {#                <input type="text" placeholder="Search by pet name...">#}
-    <button>
-        <img src="/staticfiles/images/search.png" height="18" alt="img2">
-    </button>
-</form>
-<!-- End Searchbar Form -->
+{% block title %}
+    <title>GreatHall</title>
+{% endblock %}
 
+{% block content %}
 
-<div>
-    {%  if not guilds %}
-        <h1>There are no guilds {% if searched_location %}<span> from "{{ searched_location }}"</span>{% endif %}</h1>
-    {% else %}
-    <ul>
-        {% for guild in guilds %}
-            <li><a href="{% url 'details-guild' guild.slug %}">{{ guild.guild_name }}</a> </li>
+    <!-- Start Searchbar Form -->
+    <form class="searchbar" method="post">
+        {{ search_form }}
+        {% csrf_token %}
+        {#                <input type="text" placeholder="Search by pet name...">#}
+        <button>
+            <img src="/staticfiles/images/search.png" height="18" alt="img2">
+        </button>
+    </form>
+    <!-- End Searchbar Form -->
 
 
-        {% endfor %}
-    </ul>
-    {% endif %}
-</div>
+    <div>
+        {% if not guilds %}
+            <h1>There are no guilds {% if searched_location %}<span> from "{{ searched_location }}"</span>{% endif %}
+            </h1>
+        {% else %}
+            <ul>
+                {% for guild in guilds %}
+                    <li><a href="{% url 'details-guild' guild.slug %}">{{ guild.guild_name }}</a></li>
 
 
-</div>
-</body>
-</html>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+
+
+
+{% endblock %}

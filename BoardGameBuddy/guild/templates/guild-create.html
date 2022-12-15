@@ -1,16 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Guild Create</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-<form action="{% url 'create-guild' %}" method="post" enctype="multipart/form-data">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <button>Create your guild</button>
-</form>
+{% block title %}
+    <title>Create Guild</title>
+{% endblock %}
 
-</body>
-</html>
+{% block content %}
+
+    <div class="guild-div">
+        <div class="guild-box">
+
+            <h1> Establish your new Guild</h1>
+
+            <form action="{% url 'create-guild' %}" method="post" enctype="multipart/form-data">
+                {{ form }}
+                {% csrf_token %}
+                <button>Create your guild</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

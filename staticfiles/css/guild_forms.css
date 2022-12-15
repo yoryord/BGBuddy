@@ -1,0 +1,170 @@
+.guild-div {
+	margin-top: 12%;
+
+    display: block;
+}
+
+.guild-box  {
+	display: block;
+	width: 500px;
+
+    background-image: url('../images/round-table.png');
+    background-position: center;
+	background-size: 190%;
+
+	border: 1px solid rgb(156, 152, 152);
+	padding: 60px;
+	margin-bottom: 15px;
+	border-radius: 3px;
+	border: 1px solid;
+	box-shadow: 1px 2px 3px #888888;
+
+	border-style: double;
+    border-width: 5px;
+    /* border-color: #d2bc6c; */
+	border-color: #452716;
+	border-radius: 15px;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.guild-box h1 {
+	font-family: 'MedievalSharp', sans-serif;
+	font-size: 30px;
+	text-align: center;
+	margin-top: -25px;
+
+	color: white;
+	
+}
+
+.guild-box label {
+	color: white;
+    
+}
+
+.guild-box select {
+    height: 150px;
+    width: 100%;
+}
+
+.guild-box .helptext {
+	color: white;
+	display: none;
+}
+
+
+.guild-box input {
+	background-color: rgb(240, 230, 230);
+	opacity: 80%;
+
+	border: 0.1px solid #d2bc6c;
+	border-radius: 10px;
+	height: 30px;
+	width: 100%;
+	padding-left: 2px;
+	margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.guild-box textarea {
+	background-color: rgb(240, 230, 230);
+	opacity: 80%;
+
+	border: 0.1px solid #d2bc6c;
+	border-radius: 10px;
+	height: 80px;
+	width: 100%;
+	padding-left: 2px;
+	margin-top: 10px;
+}
+
+.guild-box button {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+
+	color: #ecda71;
+    background-color: #452716;
+
+	font-weight: bold;
+	border: none;
+	width: 50%;
+	border-radius: 10px;
+	margin-top: 10px;
+	height: 30px;
+
+	border-style: solid;
+    border-width: 1px;
+    border-color: #d2bc6c;
+}
+
+.guild-box > form > ul {
+	color: white;
+	background-color: #534b45;
+	
+}
+
+/* Delete */
+
+.guild-delete-box {
+	display: block;
+	width: 700px;
+	
+
+    background-image: url('../images/delete_guild.jpg');
+    background-position: center;
+	background-size: 120%;
+
+	
+	padding: 80px;
+	margin-bottom: 15px;
+	border-radius: 3px;
+	border: 1px solid;
+	box-shadow: 1px 2px 3px #888888;
+
+	border-style: double;
+    border-width: 5px;
+    border-color: #d2bc6c;
+	/* border-color: #452716; */
+	border-radius: 15px;
+
+    margin-left: auto;
+    margin-right: auto;
+	
+
+}
+
+.guild-delete-box button {
+
+	display: block;
+	margin-left: auto;
+    margin-right: auto;
+	color: #ecda71;
+    background-color: #452716;
+
+	font-weight: bold;
+	border: none;
+	width: 50%;
+
+	border-radius: 10px;
+	margin-top: 10px;
+	height: 30px;
+
+	border-style: solid;
+    border-width: 1px;
+    border-color: #d2bc6c;
+}
+
+.guild-delete-box h1 {
+	font-family: 'MedievalSharp', sans-serif;
+	font-size: 40px;
+	text-align: center;
+	margin-top: -10px;
+
+	padding: 40px;
+
+	color: rgb(216, 62, 41);
+	
+}

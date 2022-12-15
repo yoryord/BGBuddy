@@ -44,6 +44,8 @@ def great_hall(request):
 class GameInventory(gen_views.ListView):
     template_name = 'common-game-inventory.html'
     model = Game
+    # TODO change if need be later
+    paginate_by = 10
 
     extra_context = {
         'game_searching': SearchingGameForm(),
@@ -164,6 +166,7 @@ def accept_request(request, pk):
 
     return redirect(request.META['HTTP_REFERER'])
 
+
 @login_required
 def reject_request(request, pk):
     try:
@@ -210,7 +213,6 @@ def add_message(request, slug):
 
 @login_required
 def kick_member_from_guild(request, pk, slug):
-
     try:
         buddy = BuddyProfile.objects.get(pk=pk)
     except BuddyProfile.DoesNotExist:

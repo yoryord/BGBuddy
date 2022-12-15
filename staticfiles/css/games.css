@@ -1,0 +1,129 @@
+
+.game-container {
+    padding: 15px 0;
+    width: 85%;
+
+    display: block;
+
+    
+    
+    margin-left: auto;
+    margin-right: auto;
+
+   
+
+    /* align-items: center;
+    justify-content: space-between; */
+    
+    
+    margin-top: 130px;
+
+    
+    
+}
+
+.sear-and-paginate {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form {
+    /* display: flex;
+    align-items: center; */
+      
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
+
+.searchbar label {
+    display: none;
+
+
+}
+
+.searchbar input {
+    background-color: #fafafa;
+    width: 70%;
+    padding: 5px 5px 5px 0;
+    text-indent: 21px;
+    outline: none;
+    border: 1px solid rgb(218, 217, 217);
+    border-radius: 5px;
+    color: rgb(77, 77, 77);
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.searchbar button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+.searchbar img {
+    position: absolute;
+    margin-left: -2.5rem;
+    margin-top: -0.8rem;
+}
+
+.searchbar input::placeholder {
+    font-weight: lighter;
+    color: rgb(172, 172, 172);
+}
+
+.game-list {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.game-container .paginator-line {
+    display: block;
+    
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+
+.paginator-line .pages{
+   width: 50%;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+.pages a {
+    align-items: center;
+}
+
+.game-list table {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.game-list table #table-header {
+    background-color: #452716;
+    color: #fafafa;
+
+    border: 1px solid #cccccc;
+    
+
+}
+
+.game-list table td{
+    padding: 5px;
+
+    vertical-align: middle;
+    
+}

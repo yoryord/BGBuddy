@@ -1,45 +1,112 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Games Inventory</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-<!-- Start Searchbar Form -->
-<form class="searchbar" method="get">
-    {{ game_searching }}
+{% block title %}
+    <title>BG Buddy</title>
+{% endblock %}
 
-    {#                <input type="text" placeholder="Search by pet name...">#}
-    <button>
-        <img src="/staticfiles/images/search.png" height="18" alt="img2">
-    </button>
-</form>
-<!-- End Searchbar Form -->
+{% block content %}
 
-{% if not object_list %}
-    <h1>No games with title "{{ searched_title }}" found ...</h1>
+    <div class="game-container">
 
-{% else %}
-    <ul>
-        {% for game in object_list %}
-            <li id="game_{{ game.pk }}">
+        <div class="search-and-paginate-">
+            <!-- Start Searchbar Form -->
+            <form class="searchbar" method="get">
+                {{ game_searching }}
 
-                <a href="{% url 'game-details' game.slug %}">{{ game.title }}</a>
-                {% if game.pk in user_liked_games_by_pk %}
-                    <p><a href="{% url 'game-like' game.pk %}">liked</a></p>
+
+                <button>
+                    <img src="/staticfiles/images/search.png" height="18" alt="img2">
+                </button>
+            </form>
+            <!-- End Searchbar Form -->
+
+            <!-- Start Paginator -->
+            <div class="paginator-line">
+
+                <div class="pages">
+                    page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% else %}
+                        <a>first</a>
+                        <a>previous</a>
+
+                    {% endif %}
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last</a>
+
+                    {% else %}
+                        <a>next</a>
+                        <a>last</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- End Paginator -->
+
+        <!-- Start Games List -->
+
+        <div class="game-list">
+
+            {% if not object_list %}
+                {% if searched_title %}
+                    <h1>No games with title "{{ searched_title }}" found ...</h1>
                 {% else %}
-                    <button><a href="{% url 'game-like' game.pk %}">like</a></button>
+                    <h1>No registered games yet ...</h1>
                 {% endif %}
-                <p class="likes">{{ game.gamelike_set.count }} likes</p>
+            {% else %}
+                <table>
+                    <tr id="table-header">
+                        <td>Game title</td>
+                        <td>Game description</td>
+                        <td>Rating</td>
+                        <td>Likes</td>
+                        <td>-</td>
+                    </tr>
 
-                 <p class="avr-rating">{{ game.get_average_rating|floatformat:2}} average rating</p>
-            </li>
+                    {% for game in object_list %}
+
+                        <tr id="game_{{ game.pk }}">
+                            <td><a href="{% url 'game-details' game.slug %}">{{ game.title }}</a></td>
+
+                            <td>{{ game.description }}</td>
+
+                            <td>
+                                {% if not game.get_average_rating %}
+                                    <span>-</span>
+                                {% else %}
+                                    <span
+                                            class="avr-rating">{{ game.get_average_rating|floatformat:2 }}</span>
+                                {% endif %}
+                            </td>
+
+                            <td><span class="likes">{{ game.gamelike_set.count }}</span></td>
+
+                            <td>
+                                {% if game.pk in user_liked_games_by_pk %}
+                                    <p><a href="{% url 'game-like' game.pk %}">liked</a></p>
+                                {% else %}
+                                    <button><a href="{% url 'game-like' game.pk %}">like</a></button>
+                                {% endif %}
+                            </td>
+                        </tr>
 
 
-        {% endfor %}
-    </ul>
-{% endif %}
 
-</body>
-</html>
+                    {% endfor %}
+                </table>
+            {% endif %}
+
+        </div>
+
+        <!-- End Games List -->
+
+    </div>
+
+{% endblock %}

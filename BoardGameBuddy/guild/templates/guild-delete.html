@@ -1,17 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-Do you really want to remove your guild?
-<form action="{% url 'delete-guild' object.slug %}" method="post">
+{% block title %}
+    <title>Disband Guild</title>
+{% endblock %}
 
-    {% csrf_token %}
-    <button>Delete</button>
-</form>
+{% block content %}
 
-</body>
-</html>
+    <div class="guild-div">
+        <div class="guild-delete-box">
+
+            <h1>Do you really want to disband your guild?</h1>
+            <form action="{% url 'delete-guild' object.slug %}" method="post">
+
+                {% csrf_token %}
+                <button>Disband</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

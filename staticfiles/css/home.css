@@ -178,8 +178,22 @@ main .container {
 /* Footer */
 
 footer {
-    text-align: center;
-    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+    
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    /* position: fixed;
+    width: 100%;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding: 15px; */
+   
 }
 
 footer .footer-section {
@@ -189,73 +203,15 @@ footer .footer-section {
     font-size: 15px;
     /* font-family: sans-serif; */
     z-index: -2;
-}
-
-/* footer */
-footer {
-    position: fixed;
-    width: 100%;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    padding: 15px;
-    margin-bottom: 10px;
- 
-
-}
-
-/* .welcome-world {
-    width: 100%;
-    display: inline-block;
-    justify-content: center;
-    /* padding: 25px 15px 20px;
-    position: relative;
-    box-sizing: border-box;
-    text-align: center;
-} */
-
-/* #welcome-world .welcome-message {
-    display: inline-block;
-    z-index: 999;
-    margin: 0 auto;
-    left: 0;
-    top: 40%;
-    text-align: center;
-    width: 100%
-} */
-
-/* #welcome-world>img {
-    height: auto;
-    display: inline-block;
-    vertical-align: middle;
-    max-width: 60%;
     margin-left: auto;
-
-} */
-
-/* .welcome-message h2 {
-    color: #ffffff;
-    font-size: 100%;
-
-    line-height: 1;
-    font-weight: 700;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: uppercase;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    font-family: "Agency FB", serif;
+    margin-right: auto;
 }
 
-.welcome-message h3 {
-    color: #ffffff;
-    font-size: 100%;
-    line-height: 1;
-    font-weight: 700;
-    text-align: center;
-    letter-spacing: normal;
-    word-spacing: normal;
-    text-transform: uppercase;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    font-family: "Agency FB", serif;
-}
- */
+
+/* display: flex;
+justify-content: center;
+margin-top: 10px;
+margin-bottom: 15px;
+font-size: 12px;
+font-family: sans-serif; */
+
