@@ -1,24 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
 
-    {{ object.nickname }}
+{% block title %}
+    <title>Profile</title>
+{% endblock %}
 
-    {% if object.is_public %}
-        {{ object.first_name }}<br>
-        {{ object.last_name }}<br>
-        {{ object.age }}<br>
-        {{ object.location }}<br>
-        {{ object.personal_interests }}<br>
-    {% else %}
-    {% endif %}
-    <br>
+{% block content %}
 
 
+    <div class="container">
 
-</body>
-</html>
+        <div class="profile-information">
+
+            <div class="profile-box">
+                <div class="profile-photo">
+                    <!-- Profile Image -->
+                    {% if object.profile_picture %}
+                        <img src="/media/{{ object.profile_picture }}" alt="profile_photo">
+                    {% else %}
+                        <img src="{% static 'images/person.png' %}" alt="no_profile_photo">
+                    {% endif %}
+
+                </div>
+
+                <div class="info-list">
+                    <h2>{{ object.nickname }}</h2>
+
+                </div>
+
+            </div>
+
+            <div class="profile-details">
+                {% if object.is_public %}
+                    {% if object.first_name %}
+                        <h3>First name: <span>{{ object.first_name }}</span></h3>
+                    {% else %}
+                    {% endif %}
+
+                    {% if object.last_name %}
+                        <h3>Last name: <span>{{ object.last_name }}</span></h3>
+                    {% else %}
+                    {% endif %}
+
+                    {% if object.age %}
+                        <h3>Age: <span>{{ object.age }}</span></h3>
+                    {% else %}
+                    {% endif %}
+
+                    {% if object.location %}
+                        <h3>Location: <span>{{ object.location }}</span></h3>
+                    {% else %}
+                    {% endif %}
+
+                    {% if object.personal_interests %}
+
+                        <h3>Interests: <span>{{ object.personal_interests }}</span></h3>
+                    {% else %}
+                    {% endif %}
+                {% else %}
+                    <h3>Private account</h3>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

@@ -75,6 +75,7 @@ class BuddyProfileEditForm(forms.ModelForm):
                     'placeholder': "Add information regarding your personal interests, etc.",
                 }
             ),
+            'profile_picture': forms.FileInput(),
         }
 
 

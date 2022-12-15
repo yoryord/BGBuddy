@@ -1,52 +1,79 @@
+{% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+
+{% block title %}
     <title>Profile</title>
-</head>
-<body>
+{% endblock %}
 
-<div>
+{% block content %}
+    <div class="container">
 
-    <!-- Profile Image -->
-    {% if object.buddyprofile.profile_picture %}
-        <img src="/media/{{ object.buddyprofile.profile_picture }}" alt="profile_photo">
-    {% else %}
-        <img src="{% static 'images/person.png' %}" alt="no_profile_photo">
-    {% endif %}
+        <div class="profile-information">
 
+            <div class="profile-box">
 
-    <p>
-        {{ object.email }}
-    </p><br>
-    {##}
-    {% if object.buddyprofile.is_public %}
-        <h1> Public account</h1>
-    {% else %}
-        <h1> Private account</h1>
-    {% endif %}
-    <br>
-    {{ object.buddyprofile.nickname }}<br>
-
-    {% if object.buddyprofile.first_name %}
-        {{ object.buddyprofile.first_name }}
-    {% endif %}<br>
-    {% if object.buddyprofile.last_name %}
-        {{ object.buddyprofile.last_name }}
-    {% endif %}<br>
-    {{ object.buddyprofile.age }}<br>
-    {{ object.buddyprofile.location }}<br>
-    {% if object.buddyprofile.personal_interests %}
-        {{ object.buddyprofile.personal_interests }}
-    {% endif %}<br>
-
-    <a href="{% url 'account-profile-edit' %}">edit</a>
-    <a href="{% url 'account-password-change' %}">password change</a>
-    <a href="{% url 'account-delete' %}">delete</a>
+                <div class="profile-photo">
+                    <!-- Profile Image -->
+                    {% if object.buddyprofile.profile_picture %}
+                        <img src="/media/{{ object.buddyprofile.profile_picture }}" alt="profile_photo">
+                    {% else %}
+                        <img src="{% static 'images/person.png' %}" alt="no_profile_photo">
+                    {% endif %}
+                </div>
+                <div class="info-list">
+                    <div class="profile-status">
+                        <h1>{{ object.email }}</h1>
+                        {% if object.buddyprofile.is_public %}
+                            <h2>Status: <span> Public account</span></h2>
+                        {% else %}
+                            </h2>Status: <span> Private account</span></h2>
+                        {% endif %}
+                    </div>
 
 
-</div>
+                    <div class="content-urls">
+                        <a href="{% url 'account-profile-edit' %}">Edit</a>
+                        <a href="{% url 'account-password-change' %}">Change Password</a>
+                        <a href="{% url 'account-delete' %}">Delete</a>
+                    </div>
+                </div>
 
-</body>
-</html>
+            </div>
+
+            <div class="profile-details">
+
+                {% if object.buddyprofile.nickname %}
+                    <h3>Nickname: <span>{{ object.buddyprofile.nickname }}</span></h3>
+                {% else %}
+                {% endif %}
+
+                {% if object.buddyprofile.first_name %}
+                    <h3>First name: <span>{{ object.buddyprofile.first_name }}</span></h3>
+                {% else %}
+                {% endif %}
+
+                {% if object.buddyprofile.last_name %}
+                    <h3>Last name: <span>{{ object.buddyprofile.last_name }}</span></h3>
+                {% else %}
+                {% endif %}
+
+                {% if object.buddyprofile.age %}
+                    <h3>Age: <span>{{ object.buddyprofile.age }}</span></h3>
+                {% else %}
+                {% endif %}
+
+                {% if object.buddyprofile.location %}
+                    <h3>Location: <span>{{ object.buddyprofile.location }}</span></h3>
+                {% else %}
+                {% endif %}
+
+                {% if object.buddyprofile.personal_interests %}
+
+                    <h3>Interests: <span>{{ object.buddyprofile.personal_interests }}</span></h3>
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,4 +1,9 @@
 
+@font-face {
+    font-family: MedievalSharp;
+    src: url(../fonts/MedievalSharp-Regular.ttf);
+}
+  
 
 * {
     margin: 0;

@@ -85,6 +85,7 @@ class BuddyProfileEdit(LoginRequiredMixin, gen_views.UpdateView):
         self.kwargs["pk"] = request.user.pk
 
 
+
 class BuddyAccountDelete(LoginRequiredMixin, gen_views.DeleteView):
     template_name = 'account-delete.html'
     model = UserModel

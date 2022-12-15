@@ -1,0 +1,124 @@
+
+/* font-family: 'MedievalSharp', sans-serif; */
+
+.profile-information {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 8%;
+
+    width: 50%;
+
+    background-image: url('../images/back-paper.jpg');
+    background-size: 170%;
+    background-position: center;
+    
+    border-style: double;
+    border-width: 5px;
+    
+    /* border-color: #d2bc6c; */
+	/* border-color: #452716; */
+    border-color: #660000;
+	border-radius: 15px;
+
+}
+
+.profile-information .profile-box {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    
+ 
+}
+
+.profile-box .profile-photo {
+    float: left;
+    width: 50%;
+    border-radius: 12px 0 0 7px;
+    height: 100%;
+    padding: 30px 0 30px 0 ;
+
+    border-radius: 15px;
+}
+
+.profile-photo img {
+    border-radius: 50%;
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-box .info-list {
+    width: 50%;
+    float: right;
+    display: block;
+    padding: 30px 0 30px 0 ;
+
+}
+.info-list .profile-status {
+    
+    
+    padding-top: 20px;
+    
+}
+
+.profile-status h1 {
+    font-size: 35px;
+    
+}
+
+.profile-status h2 {
+    font-size: 15px;
+    padding: 10px 0;
+}
+
+.profile-status h2 span{
+    font-size: 15px;
+    font-weight: normal;
+}
+
+
+.info-list .content-urls {
+    text-align: left;
+    
+
+}
+
+.content-urls a {
+    font-weight: bold;
+    text-decoration: none;
+	color: #452716;
+    padding: 0 7px 0 0;
+}
+
+.content-urls a:hover {
+    color: rgb(82, 129, 38);
+}
+
+.profile-information .profile-details {
+    display: block;
+    
+
+    margin-left: 55px;
+
+    padding-left: 35px;
+    padding-bottom: 35px;
+    /* padding: 35px */
+
+    
+
+}
+
+.profile-details h3 {
+    font-size: 20px;
+    padding-top: 15px;
+}
+
+.profile-details h3 span{
+    font-size: 20px;
+    font-weight: normal;
+}

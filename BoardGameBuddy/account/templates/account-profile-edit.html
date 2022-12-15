@@ -16,7 +16,7 @@
             {% endif %}
 
             <form method="post" action="{% url 'account-profile-edit' %}" enctype="multipart/form-data">
-                {{ form}}
+                {{ form }}
                 {% csrf_token %}
                 <button>Save changes</button>
 
