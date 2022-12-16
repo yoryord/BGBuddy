@@ -108,3 +108,5 @@ class Game(models.Model):
     def get_average_rating(self):
         return self.gamerating_set.aggregate(models.Avg('rating'))['rating__avg']
 
+    class Meta:
+        ordering = ['title',]

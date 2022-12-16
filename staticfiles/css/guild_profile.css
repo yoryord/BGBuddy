@@ -1,0 +1,240 @@
+.guild-container {
+    padding: 15px 0;
+    width: 85%;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 130px;
+}
+
+.guild-admin-box {
+    width: 800px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: aliceblue;
+
+
+    padding: 70px;
+    border-style: double;
+    border-width: 5px;
+
+    border-color: #452716;
+    border-radius: 15px;
+}
+
+.guild-admin-box h1 {
+    margin-bottom: 10px;
+}
+
+.guild-admin-box h2 {
+    margin: 10px 0;
+}
+
+
+.image-name-box>a>img {
+    width: 60px;
+    border-radius: 50%;
+
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    min-height: 70px;
+    background: linear-gradient(to right, #660000, #ecda71);
+    padding: 2px;
+
+    cursor: pointer;
+
+}
+
+.guild-members-section ul li,
+.guild-request-section ul li,
+.guild-owned-games ul li {
+    list-style: none;
+    display: inline-block;
+}
+
+.image-name-box {
+    display: block;
+    width: 100px;
+    text-align: center;
+}
+
+.guild-edit-section a,
+.image-name-box a,
+.guild-request-section a {
+    text-decoration: none;
+    color: #452716;
+    padding: 2px;
+}
+
+.guild-edit-section a:hover,
+.image-name-box a:hover,
+.guild-request-section a:hover {
+
+    color: rgb(82, 129, 38);
+}
+
+
+.guild-request-section>h4 {
+    margin: 10px 0;
+}
+
+/* Guild details */
+
+.guild-main-div {
+    display: inline-block;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.guild-details-box,
+.guild-messages {
+    width: 900px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('../images/back-paper.jpg');
+    background-size: 190%;
+    background-position: center;
+
+    padding: 30px 50px;
+    border-style: solid;
+    border-width: 1px;
+
+    border-color: #452716;
+    border-radius: 15px;
+
+    margin-bottom: 25px;
+}
+
+.guild-photo-box-float > img {
+    width: 240px;
+    border-radius: 90%;
+
+    padding: 2px;
+}
+
+.guild-details-box-float > h1 {
+    margin-left: 35px;
+    font-size: 25px;
+}
+
+.guild-details-box-float > p {
+    font-size: 20px;
+    margin-left: 35px;
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.membership-checks {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-left: 35px;
+}
+
+.membership-checks a {
+    text-decoration: none;
+    color: #452716;
+    padding: 2px;
+    
+}
+
+.membership-checks a:hover {
+    color: rgb(82, 129, 38);
+}
+
+.guild-description {
+    width: 800px;
+
+    border: 0.1px solid #d2bc6c;
+    background-color: rgb(253, 255, 240);
+    border-radius: 10px;
+    margin: 10px 0;
+    
+    opacity: 80%;
+}
+
+.guild-description p {
+    padding: 5px;
+}
+
+.guild-details-photo-box {
+    display: flex
+}
+
+.guild-photo-box-float {
+    float: left;
+}
+
+.guild-details-box-float {
+    float: right;
+}
+
+#message-form label {
+    display: none;
+}
+
+#message-form textarea {
+    width: 800px;
+    height: 60px;
+    text-indent: 15px;
+
+    border: 0.1px solid #d2bc6c;
+    background-color: rgb(253, 255, 240);
+    border-radius: 10px;
+    margin: 10px 0;
+    
+    opacity: 80%;
+}
+
+#message-form button {
+    display: block;
+    color: #d2bc6c;
+    margin-top: 30px;
+    margin-left: 80%;
+    margin-right: auto;
+
+    
+    background-color: #452716;
+
+	font-weight: bold;
+	border: none;
+	width: 20%;
+	border-radius: 10px;
+	margin-top: 2px;
+	height: 30px;
+
+	border-style: solid;
+    border-width: 1px;
+    border-color: #d2bc6c;
+}
+
+
+.guild-messages ul {
+    list-style: none;
+}
+.guild-messages p#message-author {
+    margin-top: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.guild-messages p#message-text {
+    min-height: 25px;    
+    width: 800px;
+    height: auto;
+    text-indent: 15px;
+    vertical-align: middle;
+
+
+    border: 0.1px solid #d2bc6c;
+    background-color: rgb(253, 255, 240);
+    border-radius: 10px;
+    margin: 5px 0;
+    
+    opacity: 80%;
+}

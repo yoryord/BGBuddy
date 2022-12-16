@@ -89,6 +89,9 @@ class GuildMessage(models.Model):
     def __str__(self):
         return self.text
 
+    class Meta:
+        ordering = ['-date_and_time_of_publication',]
+
 class RequestJoiningGuild(models.Model):
     date_created = models.DateTimeField(
         auto_now_add=True,

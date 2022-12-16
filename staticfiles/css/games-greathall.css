@@ -1,0 +1,339 @@
+.game-container {
+    padding: 15px 0;
+    width: 85%;
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    margin-top: 130px;
+}
+
+.search-and-paginate {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 65%;
+}
+
+form#searching-form {
+    width: 70%;
+}
+
+.searchbar label {
+    display: none;
+}
+
+.searchbar input {
+    background-color: #fafafa;
+    width: 70%;
+    padding: 5px 5px 5px 0;
+    text-indent: 21px;
+    outline: none;
+    border: 1px solid rgb(218, 217, 217);
+    border-radius: 5px;
+    color: rgb(77, 77, 77);
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.searchbar button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+.searchbar img {
+    position: absolute;
+    margin-left: -2.5rem;
+    margin-top: -0.8rem;
+}
+
+.searchbar input::placeholder {
+    font-weight: lighter;
+    color: rgb(172, 172, 172);
+}
+
+
+.game-container .paginator-line {
+    display: block;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.paginator-line .pages {
+    width: 50%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.pages a {
+    align-items: center;
+    padding: 0 1px;
+}
+
+.game-list {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.game-list > table {
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+
+    border: 1px solid #cccccc;
+}
+
+
+.game-list table #table-header {
+    background-color: #452716;
+    /* background-image: url("../images/red_theme.webp"); */
+    color: #fafafa;
+
+
+}
+
+.game-list table td {
+    padding: 3px;
+
+    vertical-align: middle;
+    border: 1px solid #cccccc;
+
+}
+
+table td #game_photo_id,
+#game_rating_id,
+#game_like_count_id,
+#game_like_id {
+    text-align: center;
+
+}
+
+table td img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* Game details */
+
+.game-window {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 800px;
+
+    background-image: url('../images/back-paper.jpg');
+    background-size: 170%;
+    background-position: center;
+
+    border-style: double;
+    border-width: 5px;
+    border-color: #452716;
+
+    border-radius: 15px;
+}
+
+.photo-and-info {
+    display: flex;
+    margin-left: 40px;
+
+}
+
+.photo-and-info .photo-game-box {
+    float: left;
+    padding: 25px;
+
+
+}
+
+.photo-game-box img {
+    width: 175;
+    height: auto;
+    border-radius: 5px;
+}
+
+.photo-and-info .info-game-box {
+    float: right;
+    display: block;
+    padding: 25px;
+
+}
+
+.info-game-box p {
+    margin-bottom: 15px;
+}
+
+.info-game-box p span,
+.game-description-box p span {
+    font-weight: bold;
+}
+
+.description-and-rating {
+    display: block;
+    margin-left: 50px;
+
+}
+
+
+.description-and-rating .game-description-box {
+    display: block;
+}
+
+.description-and-rating .game-rating-box {
+    display: flex;
+    width: 450px;
+}
+
+.game-rating-box>form#rating-form {
+    display: flex;
+    width: 110px;
+}
+
+/* fdafafa */
+.game-description-box {
+    width: 700px;
+
+    border: 0.1px solid #d2bc6c;
+    background-color: rgb(253, 255, 240);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    opacity: 80%;
+}
+
+.game-description-box p {
+    padding: 5px;
+
+
+}
+
+.game-rating-box .helptext {
+    display: none;
+}
+
+.game-rating-box input {
+    width: 50px;
+    margin-top: 5px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.game-rating-box button {
+
+    color: #ecda71;
+    background-color: #452716;
+
+    font-weight: bold;
+    border: none;
+    width: 50px;
+
+    border-radius: 10px;
+    margin-top: 5px;
+    height: 30px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d2bc6c;
+
+    margin-bottom: 25px;
+}
+
+.game-rating-box span {
+    margin-top: 9px;
+    font-style: italic;
+    font-size: 15px;
+}
+
+.game-rating-box h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: rgb(82, 129, 38);
+}
+
+.greathall-list {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.greathall-list >h1 {
+    text-align: center;
+    margin: 150px 0;
+}
+.greathall-list >h2 {
+    text-align: center;
+    margin: 50px 0;
+}
+
+.greathall-list > table#guild-table {
+    width: 65%;
+    margin-left: auto;
+    margin-right: auto;
+
+    border: 1px solid #cccccc;
+}
+
+
+.greathall-list > table#guild-table #table-header {
+    background-color: #452716;
+    /* background-image: url("../images/red_theme.webp"); */
+    color: #fafafa;
+
+
+}
+
+.greathall-list > table#guild-table td {
+    padding: 3px;
+
+    vertical-align: middle;
+    border: 1px solid #cccccc;
+
+    text-align: center;
+
+}
+
+
+/* Base guild */
+img#my-guild-image {
+    width: 90px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.greathall-list > button {
+    display: block;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+
+    
+    background-color: #452716;
+
+	font-weight: bold;
+	border: none;
+	width: 20%;
+	border-radius: 10px;
+	margin-top: 10px;
+	height: 30px;
+
+	border-style: solid;
+    border-width: 1px;
+    border-color: #d2bc6c;
+}
+
+.greathall-list > button > a{
+    text-decoration: none;
+    color: #ecda71;
+}

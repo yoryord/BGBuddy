@@ -8,7 +8,7 @@ class SearchingForm(forms.Form):
         required=False,
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Search guilds by location ...."
+                "placeholder": "Search by guild location ..."
             },
 
         ),
@@ -21,7 +21,7 @@ class SearchingGameForm(forms.Form):
         required=False,
         widget=forms.TextInput(
             attrs={
-                "placeholder": "Search by game name ..."
+                "placeholder": "Search by game title ..."
             },
 
         ),
@@ -39,7 +39,7 @@ class GameRateForm(forms.ModelForm):
         }
 
         help_texts = {
-            'rating': "rate can be between 1.0 and 10.0.",
+            'rating': "Rates can be between 1.0 and 10.0.",
         }
 
 
@@ -51,7 +51,7 @@ class GuildMessageForm(forms.ModelForm):
         widgets = {
             'text': forms.Textarea(
                 attrs={
-                    'placeholder': 'Add comment ...'
+                    'placeholder': 'Add a message ...'
                 }
             )
         }

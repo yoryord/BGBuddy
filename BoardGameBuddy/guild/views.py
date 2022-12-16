@@ -108,7 +108,7 @@ class DetailsGuild(gen_views.DetailView):
             buddy = self.request.user.buddyprofile
             guild_messages = guild.guildmessage_set.all()
 
-            join_request = RequestJoiningGuild.objects.filter(from_buddy=buddy).first()
+            join_request = RequestJoiningGuild.objects.filter(from_buddy=buddy, to_guild=guild).first()
 
             context['join_request'] = join_request
             context['is_member'] = guild.is_member(buddy)

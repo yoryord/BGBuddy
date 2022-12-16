@@ -1,7 +1,7 @@
 from django.urls import path
 
 from BoardGameBuddy.common.views import home, great_hall, game_like_func, GameInventory, game_rate, \
-    request_joining_guild, accept_request, reject_request, add_message, kick_member_from_guild
+    request_joining_guild, accept_request, reject_request, add_message, kick_member_from_guild, promote_member_to_admin
 
 urlpatterns = [
     path('', home, name='home-page'),
@@ -14,5 +14,6 @@ urlpatterns = [
     path('guild/request/<int:pk>/reject', reject_request, name='request-reject'),
     path('guild/comment/<slug:slug>', add_message, name='guild-message'),
     path('guild/kick/<int:pk>/<slug:slug>', kick_member_from_guild, name='kick-from-guild'),
+    path('guild/promote/<int:pk>/<slug:slug>', promote_member_to_admin, name='promote-guild-admin'),
 
 ]

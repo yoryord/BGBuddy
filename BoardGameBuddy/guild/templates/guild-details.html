@@ -1,88 +1,139 @@
+{% extends 'base.html' %}
+{% load static %}
 {% load guild_extras %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Guild details</title>
-</head>
-<body>
+{% block title %}
+    <title>{{ object.guild_name }} Details</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="guild-container">
+
+        <div class="guild-main-div">
+
+            <div class="guild-details-box">
+
+                <div class="guild-details-photo-box">
+
+                    <div class="guild-photo-box-float">
+                        {% if object.guild_picture %}
+                            <img src="/media/{{ object.guild_picture }}" alt="guild {{ object.pk }}">
+                        {% else %}
+                            <img src="{% static 'images/no_guild_image.png' %}" alt="guild_photo">
+                        {% endif %}
+
+                    </div>
+
+                    <div class="guild-details-box-float">
+                        <h1 it="guild_{{ object.slug }}">{{ object.guild_name }}</h1>
+
+                        <p>{{ object.location }}</p>
 
 
-<div>
+                        <div class="membership-checks">
+                            {% if is_member %}
+                                You are a member. <a href="{% url 'leave-guild' object.slug %}">Leave the guild?</a>
+                            {% else %}
 
-    <img src="/media/{{ object.guild_picture }}" alt="guild {{ object.pk }}">
+                                {% if join_request %}
+                                    You have already sent your request on {{ join_request.date_created }}
+                                {% else %}
+                                    <form method="post" action="{% url 'request-joining-guild' object.slug %}">
+                                        {% csrf_token %}
+                                        <button>Request joining the guild</button>
 
-
-    <p it="guild_{{ object.slug }}">{{ object.guild_name }}</p>
-    <p>{{ object.guild_description }}</p>
-    <p>{{ object.location }}</p>
-    <p>{{ object.genre }}</p>
-    Owned games:<br>
-    <ul>
-        {% for game in object.list_of_owned_games.all %}
-            <li>{{ game }}</li>
-        {% endfor %}
-    </ul>
-
-
-    Members:
-    {% for member in members %}
-        <ul>
-            <li>
-                {{ member }} {% if object|admin_check:member %}<span>(Admin)</span>{% endif %}
-            </li>
-        </ul>
-    {% endfor %}
-
-    {% if is_member %}
-        You are a member. <a href="{% url 'leave-guild' object.slug %}">Leave the guild?</a>
-    {% else %}
-
-        {% if join_request %}
-            You have already sent your request on {{ join_request.date_created }}
-        {% else %}
-            <form method="post" action="{% url 'request-joining-guild' object.slug %}">
-                {% csrf_token %}
-                <button>Request joining the guild</button>
-
-            </form>
-        {% endif %}
-    {% endif %}
-</div>
+                                    </form>
+                                {% endif %}
+                            {% endif %}
 
 
-{% if is_admin %}
-    <a href="{% url 'guild-master-board'  object.slug %}">master page</a>
-{% endif %}
-</body>
-</html>
 
-{% if is_member %}
-<!-- Start Add Comments Form -->
-<form method="post" action="{% url 'guild-message' object.slug %} ">
-    {{ message_form }}
-    {% csrf_token %}
+                            {% if is_admin %}
+                                <a href="{% url 'guild-master-board'  object.slug %}">Admin page</a>
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="guild-description">
+                    <p><span>Description:</span>{{ object.guild_description }}</p>
+                </div>
+
+                <div class="guild-members-section">
+                    <h2>Members:</h2>
+                    <ul>
+                        {% for member in members %}
+
+                            <li>
+                                <div class="image-name-box">
+
+                                    {% if member.profile_picture %}
+                                        <a href="{% url 'account-profile-public' member.nickname %}"><img
+                                                src="/media/{{ member.profile_picture }}" alt="profile_photo"></a>
+                                    {% else %}
+                                        <a href="{% url 'account-profile-public' member.nickname %}"><img
+                                                src="{% static 'images/profile.jpg' %}" alt="profile_photo"></a>
+
+                                    {% endif %}
+                                </div>
+                            </li>
+
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="guild-owned-games">
+                    <h2>Owned games:</h2>
+                    <ul>
+                        {% for game in object.list_of_owned_games.all %}
+
+                            <li>
+                                <div class="image-name-box">
+                                    <a href="{% url 'game-details' game.slug %}"><img
+                                                src="{{ game.photo_url }}" alt="photo_url"></a>
+                                </div>
+                            </li>
+
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
+            </div>
+
+            <div class="guild-messages">
+                {% if is_member %}
+                    <!-- Start Add Comments Form -->
+                    <form id="message-form" method="post" action="{% url 'guild-message' object.slug %} ">
+                        {{ message_form }}
+                        {% csrf_token %}
 
 
-    <button type="submit">Post</button>
-</form>
+                        <button type="submit">Post</button>
+                    </form>
 
-<!-- End Add Comments Form -->
+                    <!-- End Add Comments Form -->
 
 
-Messages:
+                    <h2>Messages:</h2>
 
-    {% for message in guild_messages %}
-        <ul>
-            <li>
-                {{ message.buddy }} wrote:
-                <br>
-                {{ message }}
-                <br>
-                at {{ message.date_and_time_of_publication }}
-            </li>
-        </ul>
-    {% endfor %}
-{% else %}
-{% endif %}
+                    {% for message in guild_messages %}
+                        <ul>
+                            <li>
+                                <p id="message-author">{{ message.buddy }} wrote (<span>at {{ message.date_and_time_of_publication }}</span>):</p>
+
+                                <p id="message-text">{{ message }}</p>
+
+
+                            </li>
+                        </ul>
+                    {% endfor %}
+                {% else %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

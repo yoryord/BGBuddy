@@ -1,40 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
 
 {% load game_extras %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Game details</title>
-</head>
-<body>
+{% block title %}
+    <title>{{ game.title }}</title>
+{% endblock %}
 
-<div>
+{% block content %}
 
-    <img src="{{ game.photo_url }}" alt="game {{ game.pk }}">
+    <div class="game-container">
 
+        <div class="game-window">
 
-    <p id="game_{{ game.pk }}">{{ game.title }}</p>
-    <p>{{ game.description }}</p>
-    <p>{{ game.release_year }}</p>
-    <p>{{ game.genre }}</p>
-    <p>{{ game.max_players }}</p>
-    <p>{{ game.complexity }}</p>
-    <p>{{ game.publisher }}</p>
+            <div class="photo-and-info">
+                <div class="photo-game-box">
+                    <img src="{{ game.photo_url }}" alt="game {{ game.pk }}">
+                </div>
 
-    {% if game.pk in user_rated_games_by_pk %}
-        <p>You rated this game at: {{ game.gamerating_set.filter|filter_by_buddy:user }}</p>
+                <div class="info-game-box">
+                    <p id="game_{{ game.pk }}"><span>Title:</span> {{ game.title }} </p>
 
-    {% else %}
-        <form method="post" action="{% url 'game-rate' game.pk %}">
-            {{ form }}
-            {% csrf_token %}
+                    <p><span>Release Year:</span> {{ game.release_year }} </p>
+                    <p><span>Publisher:</span> {{ game.publisher }} </p>
+                    <p><span>Genre:</span> {{ game.genre }} </p>
+                    <p><span>Max number of players:</span> {{ game.max_players }} </p>
+                    <p><span>Complexity:</span> {{ game.complexity }} </p>
+                </div>
 
-            <button>rate</button>
+            </div>
+            <div class="description-and-rating">
 
-        </form>
-    {% endif %}
-</div>
+                <div class="game-description-box">
+                    <p><span>Description:</span> {{ game.description }} </p>
 
-</body>
-</html>
+                </div>
+
+                <div class="game-rating-box">
+                    <!--Checks whether there is an authenticated user-->
+                    {% if not user.is_authenticated %}
+
+                    {% else %}
+                        <!--Checks whether current user has already rated this game-->
+                        {% if game.pk in user_rated_games_by_pk %}
+                            <h4>You've already rated this game at: {{ game.gamerating_set.filter|filter_by_buddy:auth_user }}</h4>
+
+                        {% else %}
+                            <form id="rating-form" method="post" action="{% url 'game-rate' game.pk %}">
+                                {{ form }}
+                                {% csrf_token %}
+
+                                <button>Rate</button>
+
+                            </form>
+                            <span>(Rates can be between 1.0 and 10.0)</span>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

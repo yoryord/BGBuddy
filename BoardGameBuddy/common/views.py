@@ -5,6 +5,8 @@ from django.http import Http404
 from django.shortcuts import render, redirect
 from django.views import generic as gen_views
 
+from django.core.paginator import Paginator
+
 # Create your views here.
 from BoardGameBuddy.account.models import BuddyProfile
 from BoardGameBuddy.common.forms import SearchingForm, SearchingGameForm, GameRateForm, GuildMessageForm
@@ -26,6 +28,10 @@ def great_hall(request):
     search_form = SearchingForm()
     searched_location = ""
 
+    paginator = Paginator(guilds, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     if request.method == "POST":
         search_form = SearchingForm(request.POST)
         if search_form.is_valid():
@@ -35,7 +41,8 @@ def great_hall(request):
     context = {
         'guilds': guilds,
         'search_form': search_form,
-        'searched_location': searched_location
+        'searched_location': searched_location,
+        'page_obj': page_obj,
     }
 
     return render(request, 'common-great-hall.html', context)
@@ -230,5 +237,28 @@ def kick_member_from_guild(request, pk, slug):
 
     if buddy in guild.members.all():
         guild.members.remove(buddy)
+
+    return redirect(request.META['HTTP_REFERER'])
+
+
+@login_required
+def promote_member_to_admin(request, pk, slug):
+    try:
+        buddy = BuddyProfile.objects.get(pk=pk)
+    except BuddyProfile.DoesNotExist:
+        raise Http404("Account does not exist")
+
+    try:
+        guild = BuddyGuild.objects.get(slug=slug)
+    except BuddyGuild.DoesNotExist:
+        raise Http404("Guild does not exist")
+
+    authorised_user = request.user.buddyprofile
+
+    if not guild.is_admin(authorised_user):
+        raise Http404("Wrong way")
+
+    if buddy in guild.members.all():
+        guild.promote_admin(buddy)
 
     return redirect(request.META['HTTP_REFERER'])

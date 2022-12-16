@@ -1,48 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Master</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% load guild_extras %}
 
-{{ object.guild_name }} - <a href="{% url 'edit-guild' object.slug %}">edit</a>
- <a href="{% url 'delete-guild' object.slug %}">delete</a>
 
-<br>
-Admin:
-{% for admin in admins %}
-    <ul>
-        <li>
-            {{ admin }}
-        </li>
-    </ul>
-{% endfor %}
+{% block title %}
+    <title>{{ object.guild_name }} Administration</title>
+{% endblock %}
 
-Members:
-{% for member in members %}
-    <ul>
-        <li>
-            {{ member }} - <a href="{% url  'kick-from-guild' pk=member.pk slug=object.slug %}">kick</a>
-        </li>
-    </ul>
-{% endfor %}
+{% block content %}
 
-Requests:
+    <div class="guild-container">
 
-{% for req in join_requests %}
-    <ul>
-        <li>
-            request from <a href="{% url 'account-profile-public' req.from_buddy %}">{{ req.from_buddy }}</a>
-            <br>
-            <a href="{% url 'request-accept' req.pk %}">accept</a>
-            <br>
-            <a href="{% url 'request-reject' req.pk %}">reject</a>
-        </li>
-    </ul>
-{% empty %}
-    No pending requests
-{% endfor %}
+        <div class="guild-admin-box">
 
-</body>
-</html>
+            <div class="guild-edit-section">
+                <h1>{{ object.guild_name }}</h1>
+                <div class="edit-section-links">
+                    <a href="{% url 'edit-guild' object.slug %}"><b>Edit</b></a>
+                    <a href="{% url 'delete-guild' object.slug %}"><b>Delete</b></a>
+                </div>
+
+            </div>
+
+            <div class="guild-members-section">
+                <h2>Admins:</h2>
+                <ul>
+                    {% for admin in admins %}
+
+                        <li>
+                            <div class="image-name-box">
+                                {% if admin.profile_picture %}
+                                    <a href="{% url 'account-profile-public' admin.nickname %}"><img
+                                            src="/media/{{ admin.profile_picture }}" alt="profile_photo"></a>
+                                {% else %}
+                                    <a href="{% url 'account-profile-public' admin.nickname %}"><img
+                                            src="{% static 'images/profile.jpg' %}" alt="profile_photo"></a>
+
+                                {% endif %}
+
+                            </div>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+
+                <h2>Members:</h2>
+                <ul>
+                    {% for member in members %}
+
+                        <li>
+                            <div class="image-name-box">
+                                {#                                <div class="image-name-box">#}
+                                {% if member.profile_picture %}
+                                    <a href="{% url 'account-profile-public' member.nickname %}"><img
+                                            src="/media/{{ member.profile_picture }}" alt="profile_photo"></a>
+                                {% else %}
+                                    <a href="{% url 'account-profile-public' member.nickname %}"><img
+                                            src="{% static 'images/profile.jpg' %}" alt="profile_photo"></a>
+
+                                {% endif %}
+
+                                {#                                </div>#}
+
+
+                                <a id="kick_member"
+                                   href="{% url  'kick-from-guild' pk=member.pk slug=object.slug %}">kick</a>
+                                {% if not object|admin_check:member %}
+                                    <a id="promote_member"
+                                       href="{% url  'promote-guild-admin' pk=member.pk slug=object.slug %}">promote</a>
+                                {% else %}
+                                {% endif %}
+                            </div>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+            <div class="guild-request-section">
+
+                <h2>Join Requests:</h2>
+                <ul>
+
+                    {% for req in join_requests %}
+
+
+                        <li>
+
+                            <div class="image-name-box">
+                                {% if req.from_buddy.profile_picture %}
+                                    <a href="{% url 'account-profile-public' req.from_buddy.nickname %}"><img
+                                            src="/media/{{ req.from_buddy.profile_picture }}" alt="profile_photo"></a>
+                                {% else %}
+                                    <a href="{% url 'account-profile-public' req.from_buddy.nickname %}"><img
+                                            src="{% static 'images/profile.jpg' %}" alt="profile_photo"></a>
+
+                                {% endif %}
+
+                            </div>
+                            <a href="{% url 'request-accept' req.pk %}">accept</a>
+                            <a href="{% url 'request-reject' req.pk %}">reject</a>
+                        </li>
+
+                    {% empty %}
+                        <h4>No pending requests</h4>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

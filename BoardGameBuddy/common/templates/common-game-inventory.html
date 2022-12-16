@@ -9,9 +9,9 @@
 
     <div class="game-container">
 
-        <div class="search-and-paginate-">
+        <div class="search-and-paginate">
             <!-- Start Searchbar Form -->
-            <form class="searchbar" method="get">
+            <form id="searching-form" class="searchbar" method="get">
                 {{ game_searching }}
 
 
@@ -25,7 +25,7 @@
             <div class="paginator-line">
 
                 <div class="pages">
-                    page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    (page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }})
 
                     {% if page_obj.has_previous %}
                         <a href="?page=1">first</a>
@@ -63,32 +63,32 @@
             {% else %}
                 <table>
                     <tr id="table-header">
+                        <td> </td>
                         <td>Game title</td>
-                        <td>Game description</td>
                         <td>Rating</td>
                         <td>Likes</td>
-                        <td>-</td>
+                        <td> </td>
                     </tr>
 
                     {% for game in object_list %}
 
                         <tr id="game_{{ game.pk }}">
-                            <td><a href="{% url 'game-details' game.slug %}">{{ game.title }}</a></td>
+                            <td id="game_photo_id"><a href="{% url 'game-details' game.slug %}">
+                            <img src="{{ game.photo_url }}" width="70px" height="70px"></a></td>
 
-                            <td>{{ game.description }}</td>
+                            <td id="game_title_id"><h3>{{ game.title }}</h3>{{ game.description }}</td>
 
-                            <td>
+                            <td id="game_rating_id">
                                 {% if not game.get_average_rating %}
                                     <span>-</span>
                                 {% else %}
-                                    <span
-                                            class="avr-rating">{{ game.get_average_rating|floatformat:2 }}</span>
+                                    <span class="avr-rating">{{ game.get_average_rating|floatformat:2 }}</span>
                                 {% endif %}
                             </td>
 
-                            <td><span class="likes">{{ game.gamelike_set.count }}</span></td>
+                            <td id="game_like_count_id"><span class="likes">{{ game.gamelike_set.count }}</span></td>
 
-                            <td>
+                            <td id="game_like_id">
                                 {% if game.pk in user_liked_games_by_pk %}
                                     <p><a href="{% url 'game-like' game.pk %}">liked</a></p>
                                 {% else %}

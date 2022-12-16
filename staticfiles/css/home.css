@@ -37,7 +37,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #452716;
+    /* background-color: #452716; */
     background-image: url("../images/nav_background.webp");
 
     width: 100%;
@@ -51,7 +51,7 @@ body {
 
 .logo {
     width: 120px;
-    padding: 0 0 0 0;
+    
     margin-left: 0.2em;
     margin-right: 0.2em;
 } 
@@ -107,7 +107,7 @@ main .container {
 
 .col-9 {
     width: 75%;
-    margin: 5% auto;
+    margin: 60px auto;
     /* margin-bottom: -20px; */
 }
 
@@ -179,12 +179,10 @@ main .container {
 
 footer {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
+ 
 
-
-    
-    margin-top: 15px;
+    margin-top: 10px;
     margin-bottom: 15px;
 
     /* position: fixed;

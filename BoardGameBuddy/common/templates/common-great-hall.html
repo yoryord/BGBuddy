@@ -7,34 +7,85 @@
 
 {% block content %}
 
-    <!-- Start Searchbar Form -->
-    <form class="searchbar" method="post">
-        {{ search_form }}
-        {% csrf_token %}
-        {#                <input type="text" placeholder="Search by pet name...">#}
-        <button>
-            <img src="/staticfiles/images/search.png" height="18" alt="img2">
-        </button>
-    </form>
-    <!-- End Searchbar Form -->
+    <div class="game-container">
+
+        <div class="search-and-paginate">
+
+            <!-- Start Searchbar Form -->
+            <form id="searching-form" class="searchbar" method="post">
+                {{ search_form }}
+                {% csrf_token %}
+
+                <button>
+                    <img src="/staticfiles/images/search.png" height="18" alt="img2">
+                </button>
+            </form>
+            <!-- End Searchbar Form -->
+
+            <!-- Start Paginator -->
+            <div class="paginator-line">
+
+                <div class="pages">
+                    (page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }})
+
+                    {% if page_obj.has_previous %}
+                        <a href="?page=1">first</a>
+                        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                    {% else %}
+                        <a>first</a>
+                        <a>previous</a>
+
+                    {% endif %}
+
+                    {% if page_obj.has_next %}
+                        <a href="?page={{ page_obj.next_page_number }}">next</a>
+                        <a href="?page={{ page_obj.paginator.num_pages }}">last</a>
+
+                    {% else %}
+                        <a>next</a>
+                        <a>last</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- End Paginator -->
 
 
-    <div>
-        {% if not guilds %}
-            <h1>There are no guilds {% if searched_location %}<span> from "{{ searched_location }}"</span>{% endif %}
-            </h1>
-        {% else %}
-            <ul>
-                {% for guild in guilds %}
-                    <li><a href="{% url 'details-guild' guild.slug %}">{{ guild.guild_name }}</a></li>
+        <div class="greathall-list">
+            {% if not guilds %}
+                <h1>There are no guilds {% if searched_location %}
+                    <span> from "{{ searched_location }}"</span>{% endif %}
+                </h1>
+            {% else %}
 
 
-                {% endfor %}
-            </ul>
-        {% endif %}
+                <table id="guild-table">
+
+                    <tr id="table-header">
+
+                        <td>Guild name</td>
+                        <td>Location</td>
+                        <td>Members</td>
+                        <td>Owned games</td>
+                    </tr>
+
+
+                    {% for guild in guilds %}
+
+                        <tr id="guild_{{ guild.pk }}">
+                            <td><a href="{% url 'details-guild' guild.slug %}">{{ guild.guild_name }}</a></td>
+                            <td>{{ guild.location }}</td>
+                            <td>{{ guild.members.count }}</td>
+                            <td>{{ guild.list_of_owned_games.count }}</td>
+                        </tr>
+
+                    {% endfor %}
+                </table>
+            {% endif %}
+        </div>
+
     </div>
-
-
 
 
 {% endblock %}

@@ -7,37 +7,13 @@ from django.urls import reverse_lazy
 from django.views import generic as gen_views
 
 from BoardGameBuddy.common.forms import GameRateForm
-from BoardGameBuddy.game.forms import AddGameForm, EditGameForm
+
 from BoardGameBuddy.game.models import Game
 
 
-# TODO - only admin and staff can access this view
-class AddGame(LoginRequiredMixin, gen_views.CreateView):
-    template_name = 'game-add.html'
-    model = Game
-    form_class = AddGameForm
-
-    # TODO integration test needed
-    def get_success_url(self):
-        self.success_url = reverse_lazy('game-details', kwargs={'slug': self.object.slug})
-        return super().get_success_url()
-
-
-class EditGame(LoginRequiredMixin, gen_views.UpdateView):
-    template_name = 'game-edit.html'
-    model = Game
-    form_class = EditGameForm
-
-    # TODO integration test needed
-    def get_success_url(self):
-        self.success_url = reverse_lazy('game-details', kwargs={'slug': self.object.slug})
-        return super().get_success_url()
-
-
-class RemoveGame(LoginRequiredMixin, gen_views.DeleteView):
-    template_name = 'game-remove.html'
-    model = Game
-    success_url = reverse_lazy('game-inventory')
+#  Games CRUD operations are deliberately
+#  delegated to admin (superuser and privileged staff members)
+#  - Games are managed from the admin page
 
 
 class DetailsGame(gen_views.DetailView):
@@ -55,7 +31,7 @@ class DetailsGame(gen_views.DetailView):
         if isinstance(self.request.user, AnonymousUser):
             context['user_rated_games_by_pk'] = []
         else:
-            context['user'] = self.request.user.buddyprofile
+            context['auth_user'] = self.request.user.buddyprofile
             context['user_rated_games_by_pk'] = [rate.game.pk for rate in
                                                  self.request.user.buddyprofile.gamerating_set.all()]
         return context
