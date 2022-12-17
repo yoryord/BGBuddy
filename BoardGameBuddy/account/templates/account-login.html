@@ -14,6 +14,7 @@
         <form method="post" action="{% url 'account-login' %}">
             {{ form.as_p }}
             {% csrf_token %}
+            <input name="next" type="hidden" value="{{ next }}">
             <button>Log in</button>
         </form>
     </div>

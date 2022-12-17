@@ -8,7 +8,7 @@
 
     margin-top: 8%;
 
-    width: 50%;
+    width: 40%;
 
     background-image: url('../images/back-paper.jpg');
     background-size: 170%;
@@ -39,6 +39,7 @@
     height: 100%;
     padding: 30px 0 30px 0 ;
 
+
     border-radius: 15px;
 }
 
@@ -60,14 +61,14 @@
 
 }
 .info-list .profile-status {
-    
-    
+        
     padding-top: 20px;
     
 }
 
 .profile-status h1 {
-    font-size: 35px;
+    font-size: 30px;
+    margin-bottom: 5px;
     
 }
 
@@ -84,6 +85,7 @@
 
 .info-list .content-urls {
     text-align: left;
+    margin-top: 5px;
     
 
 }

@@ -28,7 +28,8 @@ class BaseGuildView(auth_mixins.LoginRequiredMixin, gen_views.ListView):
         queryset = super().get_queryset()
 
         buddy = self.request.user.buddyprofile
-        # TODO test exclusion of the queryset when buddy is not in certain guld
+
+        # exclusion of the queryset when buddy is not in certain guild
         for query in queryset:
             if buddy not in query.members.all():
                 queryset = queryset.exclude(pk=query.pk)
@@ -59,7 +60,6 @@ class CreateGuild(auth_mixins.LoginRequiredMixin, gen_views.CreateView):
 
         return result
 
-    # TODO integration test needed
     def get_success_url(self):
         self.success_url = reverse_lazy('details-guild', kwargs={'slug': self.object.slug})
         return super().get_success_url()
@@ -74,7 +74,6 @@ class EditGuild(auth_mixins.LoginRequiredMixin, AdminAccessMixin, gen_views.Upda
         self.admin_check(context)
         return super().render_to_response(context, **response_kwargs)
 
-    # TODO integration test needed
     def get_success_url(self):
         self.success_url = reverse_lazy('details-guild', kwargs={'slug': self.object.slug})
         return super().get_success_url()
@@ -91,6 +90,7 @@ class DeleteGuild(auth_mixins.LoginRequiredMixin, AdminAccessMixin, gen_views.De
 
     def get_success_url(self):
         return super().get_success_url()
+
 
 class DetailsGuild(gen_views.DetailView):
     template_name = 'guild-details.html'
@@ -121,7 +121,6 @@ class DetailsGuild(gen_views.DetailView):
         context['members'] = guild.members.all()
 
         return context
-
 
 
 class GuildMasterView(auth_mixins.LoginRequiredMixin, AdminAccessMixin, gen_views.DetailView):
@@ -170,6 +169,3 @@ def leave_guild(request, slug):
             guild.promote_admin(first_buddy)
 
     return redirect('home-page')
-
-
-

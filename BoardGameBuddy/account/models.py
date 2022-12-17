@@ -116,7 +116,6 @@ class BuddyAccount(base_user.AbstractBaseUser, auth_models.PermissionsMixin):
 
 
 class BuddyProfile(models.Model):
-    # TODO -> Profile model validators
 
     MAX_LEN_NICKNAME = 15
     MIN_LEN_NICKNAME = 2
@@ -171,7 +170,7 @@ class BuddyProfile(models.Model):
 
     )
 
-    # TODO -> test custom validator
+
     profile_picture = models.ImageField(
         upload_to='profile_photos',
         validators=(validate_file_size,),

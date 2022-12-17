@@ -40,29 +40,6 @@ class GameRating(models.Model):
         return str(self.rating)
 
 
-# class GameComment(models.Model):
-#     MAX_COMMENT_TEXT = 300
-#
-#     text = models.TextField(
-#         max_length=MAX_COMMENT_TEXT,
-#         null=False,
-#         blank=False,
-#     )
-#
-#     date_and_time_of_publication = models.DateTimeField(
-#         auto_now_add=True,
-#     )
-#
-#     game = models.ForeignKey(
-#         Game,
-#         on_delete=models.CASCADE,
-#     )
-#
-#     buddy = models.ForeignKey(to=BuddyProfile,
-#                               on_delete=models.CASCADE,
-#                               )
-
-
 class GuildMessage(models.Model):
     MAX_GROUP_COMMENT_TEXT = 100
 
@@ -76,21 +53,21 @@ class GuildMessage(models.Model):
         auto_now_add=True,
     )
 
-    # TODO on delete may ne Do Nothing but have to add 'if' statement in the html when user is missing to present 'past user'
     guild = models.ForeignKey(
         BuddyGuild,
         on_delete=models.CASCADE,
     )
 
     buddy = models.ForeignKey(to=BuddyProfile,
-                             on_delete=models.CASCADE,
-                             )
+                              on_delete=models.CASCADE,
+                              )
 
     def __str__(self):
         return self.text
 
     class Meta:
-        ordering = ['-date_and_time_of_publication',]
+        ordering = ['-date_and_time_of_publication', ]
+
 
 class RequestJoiningGuild(models.Model):
     date_created = models.DateTimeField(
@@ -103,4 +80,3 @@ class RequestJoiningGuild(models.Model):
     to_guild = models.ForeignKey(to=BuddyGuild,
                                  on_delete=models.CASCADE,
                                  )
-

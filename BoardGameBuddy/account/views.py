@@ -50,12 +50,12 @@ class BuddyLoginView(auth_views.LoginView):
 
         return form
 
-    def get_success_url(self):
-        return super().get_success_url()
+    def get_default_redirect_url(self):
+        return super().get_default_redirect_url()
 
 
 class BuddyLogoutView(LoginRequiredMixin, auth_views.LogoutView):
-    pass
+    next_page = reverse_lazy('home-page')
 
 
 # This view uses UserModel and is only accessible by logged in users
@@ -67,11 +67,10 @@ class BuddyProfileView(LoginRequiredMixin, gen_views.DetailView):
     def setup(self, request, *args, **kwargs):
         super().setup(request, *args, **kwargs)
 
-        # TODO test -> test plug in for using request pk and do not pass it in url
+        # plug in for getting the request pk and do not pass it in url
         self.kwargs["pk"] = request.user.pk
 
 
-# TODO Account Views
 class BuddyProfileEdit(LoginRequiredMixin, gen_views.UpdateView):
     template_name = 'account-profile-edit.html'
     model = BuddyProfile
@@ -81,7 +80,7 @@ class BuddyProfileEdit(LoginRequiredMixin, gen_views.UpdateView):
     def setup(self, request, *args, **kwargs):
         super().setup(request, *args, **kwargs)
 
-        # TODO test -> test plug in for using request pk and do not pass it in url
+        # plug in for getting the request pk and do not pass it in url
         self.kwargs["pk"] = request.user.pk
 
 
@@ -93,7 +92,7 @@ class BuddyAccountDelete(LoginRequiredMixin, gen_views.DeleteView):
     def setup(self, request, *args, **kwargs):
         super().setup(request, *args, **kwargs)
 
-        # TODO test -> test plug in for using request pk and do not pass it in url
+        # plug in for getting the request pk and do not pass it in url
         self.kwargs["pk"] = request.user.pk
 
 
