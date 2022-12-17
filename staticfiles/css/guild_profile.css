@@ -137,6 +137,13 @@
     margin-left: 35px;
 }
 
+.membership-checks p {
+    font-size: 20px;
+    /* margin-left: 35px; */
+    margin-top: 10px;
+    font-style: italic;
+}
+
 .membership-checks a {
     text-decoration: none;
     color: #452716;
@@ -161,6 +168,10 @@
 
 .guild-description p {
     padding: 5px;
+}
+
+.guild-description p span{
+    font-weight: bold;
 }
 
 .guild-details-photo-box {
@@ -212,6 +223,8 @@
 	border-style: solid;
     border-width: 1px;
     border-color: #d2bc6c;
+
+    cursor: pointer;
 }
 
 
@@ -223,6 +236,12 @@
     font-size: 15px;
     font-weight: bold;
 }
+
+.guild-messages p#message-author span{
+    font-size: 12px;
+    font-style: italic;
+}
+
 .guild-messages p#message-text {
     min-height: 25px;    
     width: 800px;
@@ -234,7 +253,30 @@
     border: 0.1px solid #d2bc6c;
     background-color: rgb(253, 255, 240);
     border-radius: 10px;
-    margin: 5px 0;
+    
     
     opacity: 80%;
+}
+
+#request-join-guild button {
+    display: block;
+    color: #d2bc6c;
+    margin-top: 30px;
+    
+   
+    
+    background-color: #452716;
+
+	font-weight: bold;
+	border: none;
+	width: 110%;
+	border-radius: 10px;
+	margin-top: 2px;
+	height: 35px;
+
+	border-style: solid;
+    border-width: 1px;
+    border-color: #d2bc6c;
+
+    cursor: pointer;
 }

@@ -1,5 +1,5 @@
 .guild-div {
-	margin-top: 12%;
+	margin-top: 150px;
 
     display: block;
 }
@@ -98,6 +98,8 @@
 	border-style: solid;
     border-width: 1px;
     border-color: #d2bc6c;
+
+	cursor: pointer;
 }
 
 .guild-box > form > ul {
@@ -155,6 +157,8 @@
 	border-style: solid;
     border-width: 1px;
     border-color: #d2bc6c;
+
+	cursor: pointer;
 }
 
 .guild-delete-box h1 {

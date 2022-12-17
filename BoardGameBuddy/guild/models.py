@@ -38,7 +38,7 @@ class BuddyGuild(models.Model):
         blank=False,
     )
 
-    # TODO ->
+
     admins = models.ManyToManyField(
         BuddyProfile,
         related_name="admins_set",
@@ -80,7 +80,9 @@ class BuddyGuild(models.Model):
     def __str__(self):
         return self.guild_name
 
-    # TODO redo the functions
+    class Meta:
+        ordering = ['guild_name',]
+
     def is_admin(self, obj):
         if obj not in self.admins.all():
             return False

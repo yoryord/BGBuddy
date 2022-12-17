@@ -119,6 +119,56 @@ table td #game_photo_id,
 
 }
 
+button#like-button {
+    
+    background-color: #452716;
+
+    font-weight: bold;
+    border: none;
+    width: 40px;
+
+    border-radius: 10px;
+    margin-top: 5px;
+    height: 30px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d2bc6c;
+
+    cursor: pointer;
+}
+
+button#like-button a{
+    text-decoration: none;
+    color: #ecda71;
+}
+
+
+button#liked-button {
+    
+    background-color: #ecda71;
+
+    font-weight: bold;
+    border: none;
+    width: 40px;
+
+    border-radius: 10px;
+    margin-top: 5px;
+    height: 30px;
+
+    border-style: solid;
+    border-width: 1px;
+    border-color: #452716;
+
+    cursor: pointer;
+}
+
+button#liked-button a{
+    text-decoration: none;
+    color: #452716;
+    
+}
+
 table td img {
     display: block;
     margin-left: auto;
@@ -247,6 +297,8 @@ table td img {
     border-color: #d2bc6c;
 
     margin-bottom: 25px;
+
+    cursor: pointer;
 }
 
 .game-rating-box span {
@@ -331,6 +383,8 @@ img#my-guild-image {
 	border-style: solid;
     border-width: 1px;
     border-color: #d2bc6c;
+
+    cursor: pointer;
 }
 
 .greathall-list > button > a{

@@ -18,14 +18,12 @@ class SignUpForm(auth_forms.UserCreationForm):
     class Meta:
         model = UserModel
         fields = (UserModel.USERNAME_FIELD,)
-        # field_classes = {"email": UsernameField}
 
 
 class AccountEditForm(auth_forms.UserChangeForm):
     class Meta:
         model = UserModel
         fields = "__all__"
-        # field_classes = {"username": UsernameField}
 
 
 class BuddyProfileEditForm(forms.ModelForm):
@@ -81,9 +79,3 @@ class BuddyProfileEditForm(forms.ModelForm):
 
 class BuddyPasswordChangeForm(auth_forms.PasswordChangeForm):
     pass
-
-# TODO remove later
-# class PassChangeForm(auth_forms.AdminPasswordChangeForm):
-#     pass
-
-# PasswordChangeForm

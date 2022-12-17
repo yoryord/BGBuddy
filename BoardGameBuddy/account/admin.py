@@ -1,19 +1,15 @@
 from django.contrib import admin
 
-# Register your models here.
-
 from django.contrib.auth import admin as auth_admin, get_user_model
 from django.contrib.auth import forms as auth_forms
 from django.utils.translation import gettext_lazy as _
 
-# TODO - Add at least 5 custom options (in total) to the admin interface (e.g., filters, list display, ordering, etc.)
 from BoardGameBuddy.account.forms import SignUpForm, AccountEditForm
 from BoardGameBuddy.account.models import BuddyProfile
 
 UserModel = get_user_model()
 
 
-# TODO review the UserAdmin from 'django.contrib.auth.admin'
 @admin.register(UserModel)
 class BuddyAdmin(auth_admin.UserAdmin):
     add_form_template = "admin/auth/user/add_form.html"
@@ -55,10 +51,8 @@ class BuddyAdmin(auth_admin.UserAdmin):
 
 @admin.register(BuddyProfile)
 class BuddyProfileAdmin(admin.ModelAdmin):
-    list_display = ('nickname', 'age', 'location', 'first_name', 'last_name', 'is_public','account_id')
-    list_filter = ('nickname', 'age', 'location', 'first_name', 'last_name', 'is_public','account_id')
-    search_fields = ('nickname', 'age', 'location', 'first_name', 'last_name', 'is_public','account_id')
+    list_display = ('nickname', 'age', 'location', 'first_name', 'last_name', 'is_public', 'account_id')
+    list_filter = ('nickname', 'age', 'location', 'first_name', 'last_name', 'is_public', 'account_id')
+    search_fields = ('nickname', 'age', 'location', 'first_name', 'last_name', 'is_public', 'account_id')
 
     ordering = ("account_id",)
-
-

@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, redirect
@@ -149,6 +151,7 @@ def leave_guild(request, slug):
     try:
         guild = BuddyGuild.objects.get(slug=slug)
     except BuddyGuild.DoesNotExist:
+        logging.debug(f'Account id {request.user.pk} attempt to reach url "{request.path}"')
         raise Http404("This guild does not exist")
 
     buddy = request.user.buddyprofile

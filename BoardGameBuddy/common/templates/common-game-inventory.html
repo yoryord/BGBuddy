@@ -90,9 +90,9 @@
 
                             <td id="game_like_id">
                                 {% if game.pk in user_liked_games_by_pk %}
-                                    <p><a href="{% url 'game-like' game.pk %}">liked</a></p>
+                                    <button id="liked-button"><a href="{% url 'game-like' game.pk %}">liked</a></button>
                                 {% else %}
-                                    <button><a href="{% url 'game-like' game.pk %}">like</a></button>
+                                    <button id="like-button"><a href="{% url 'game-like' game.pk %}">like</a></button>
                                 {% endif %}
                             </td>
                         </tr>

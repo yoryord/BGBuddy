@@ -30,7 +30,6 @@ class CreateBuddyView(gen_views.CreateView):
 
         return form
 
-    # TODO test -> test log in after successful register
     def form_valid(self, form):
         result = super().form_valid(form)
 
@@ -41,6 +40,7 @@ class CreateBuddyView(gen_views.CreateView):
 
 class BuddyLoginView(auth_views.LoginView):
     template_name = 'account-login.html'
+    next_page = reverse_lazy('home-page')
 
     def get_form(self, form_class=None):
         form = super().get_form(form_class=form_class)
@@ -85,7 +85,6 @@ class BuddyProfileEdit(LoginRequiredMixin, gen_views.UpdateView):
         self.kwargs["pk"] = request.user.pk
 
 
-
 class BuddyAccountDelete(LoginRequiredMixin, gen_views.DeleteView):
     template_name = 'account-delete.html'
     model = UserModel
@@ -120,13 +119,7 @@ class BuddyAccountChangePassDone(LoginRequiredMixin, auth_views.PasswordChangeDo
     template_name = "account-password-change-done.html"
 
 
-# TODO reset pass
-class BuddyAccountResetPass:
-    pass
-
-
-# TODO consider whether LoginRequired is needed here
-class BuddyProfileViewPublic(gen_views.DetailView):
+class BuddyProfileViewPublic(LoginRequiredMixin, gen_views.DetailView):
     template_name = 'account-profile-public.html'
     model = BuddyProfile
     slug_url_kwarg = 'nickname'

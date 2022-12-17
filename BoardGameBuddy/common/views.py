@@ -1,3 +1,5 @@
+import logging
+
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import AnonymousUser
 from django.core.exceptions import PermissionDenied
@@ -51,7 +53,7 @@ def great_hall(request):
 class GameInventory(gen_views.ListView):
     template_name = 'common-game-inventory.html'
     model = Game
-    # TODO change if need be later
+
     paginate_by = 10
 
     extra_context = {
@@ -94,6 +96,7 @@ def game_like_func(request, pk):
     try:
         game = Game.objects.get(pk=pk)
     except Game.DoesNotExist:
+        logging.debug(f'Game does not exist. Account id {request.user.pk} attempt to reach url "{request.path}".')
         raise Http404("This game does not exist")
 
     liked_game = GameLike.objects.filter(buddy=buddy, game=game).first()
@@ -115,6 +118,7 @@ def game_rate(request, pk):
         try:
             game = Game.objects.get(pk=pk)
         except Game.DoesNotExist:
+            logging.debug(f'Game does not exist. Account id {request.user.pk} attempt to reach url "{request.path}".')
             raise Http404("This game does not exist")
 
         rating_form = GameRateForm(request.POST)
@@ -134,6 +138,7 @@ def request_joining_guild(request, slug):
         try:
             guild = BuddyGuild.objects.get(slug=slug)
         except BuddyGuild.DoesNotExist:
+            logging.debug(f'Guild slug does not exist. Account id {request.user.pk} attempt to reach url "{request.path}".')
             raise Http404("This guild does not exist")
 
         request_joining = RequestJoiningGuild.objects.filter(from_buddy=buddy, to_guild=guild).first()
@@ -154,6 +159,7 @@ def accept_request(request, pk):
     try:
         join_request = RequestJoiningGuild.objects.get(pk=pk)
     except RequestJoiningGuild.DoesNotExist:
+        logging.debug(f'Request does not exist. Account id {request.user.pk} attempt to reach url "{request.path}".')
         raise Http404("Wrong request")
 
     authorised_user = request.user.buddyprofile
@@ -162,8 +168,9 @@ def accept_request(request, pk):
 
     guild = join_request.to_guild
 
-    # TODO specify to redirect to 404
+
     if not guild.is_admin(authorised_user):
+        logging.info(f'Access denied. Account id {request.user.pk} attempt to reach url "{request.path}".')
         raise Http404("Wrong way")
 
     if buddy not in guild.members.all():
@@ -179,14 +186,15 @@ def reject_request(request, pk):
     try:
         join_request = RequestJoiningGuild.objects.get(pk=pk)
     except RequestJoiningGuild.DoesNotExist:
+        logging.debug(f'Request does not exist. Account id {request.user.pk} attempt to reach url "{request.path}".')
         raise Http404("Wrong request")
 
     authorised_user = request.user.buddyprofile
 
     guild = join_request.to_guild
 
-    # TODO specify to redirect to 404
     if not guild.is_admin(authorised_user):
+        logging.info(f'Access denied. Account id {request.user.pk} attempt to reach url "{request.path}".')
         raise Http404("Wrong way")
 
     join_request.delete()
@@ -200,11 +208,13 @@ def add_message(request, slug):
         try:
             guild = BuddyGuild.objects.filter(slug=slug).get()
         except BuddyGuild.DoesNotExist:
+            logging.debug(f'Guild slug does not exist. Account id {request.user.pk} attempt to reach url "{request.path}".')
             raise Http404("This guild does not exist")
 
         authorised_user = request.user.buddyprofile
 
         if not guild.is_member(authorised_user):
+            logging.info(f'Access denied. User is not a Guild member. Account id {request.user.pk} attempt to reach url "{request.path}".')
             raise Http404("Wrong way")
 
         form = GuildMessageForm(request.POST)
@@ -223,16 +233,19 @@ def kick_member_from_guild(request, pk, slug):
     try:
         buddy = BuddyProfile.objects.get(pk=pk)
     except BuddyProfile.DoesNotExist:
+        logging.debug(f'BuddyProfile does not exist. Account id {request.user.pk} attempt to reach url "{request.path}".')
         raise Http404("Account does not exist")
 
     try:
         guild = BuddyGuild.objects.get(slug=slug)
     except BuddyGuild.DoesNotExist:
+        logging.debug(f'Guild slug does not exist. Account id {request.user.pk} attempt to reach url "{request.path}".')
         raise Http404("Guild does not exist")
 
     authorised_user = request.user.buddyprofile
 
     if not guild.is_admin(authorised_user):
+        logging.info(f'Access denied. Account id {request.user.pk} attempt to reach url "{request.path}".')
         raise Http404("Wrong way")
 
     if buddy in guild.members.all():
@@ -246,16 +259,19 @@ def promote_member_to_admin(request, pk, slug):
     try:
         buddy = BuddyProfile.objects.get(pk=pk)
     except BuddyProfile.DoesNotExist:
+        logging.debug(f'BuddyProfile does not exist. Account id {request.user.pk} attempt to reach url "{request.path}".')
         raise Http404("Account does not exist")
 
     try:
         guild = BuddyGuild.objects.get(slug=slug)
     except BuddyGuild.DoesNotExist:
+        logging.debug(f'Guild slug does not exist. Account id {request.user.pk} attempt to reach url "{request.path}".')
         raise Http404("Guild does not exist")
 
     authorised_user = request.user.buddyprofile
 
     if not guild.is_admin(authorised_user):
+        logging.info(f'Access denied. Account id {request.user.pk} attempt to reach url "{request.path}".')
         raise Http404("Wrong way")
 
     if buddy in guild.members.all():

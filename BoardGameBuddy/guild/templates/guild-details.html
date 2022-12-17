@@ -37,9 +37,9 @@
                             {% else %}
 
                                 {% if join_request %}
-                                    You have already sent your request on {{ join_request.date_created }}
+                                    <p>You sent your request on {{ join_request.date_created }}<p>
                                 {% else %}
-                                    <form method="post" action="{% url 'request-joining-guild' object.slug %}">
+                                    <form id="request-join-guild" method="post" action="{% url 'request-joining-guild' object.slug %}">
                                         {% csrf_token %}
                                         <button>Request joining the guild</button>
 
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="guild-description">
-                    <p><span>Description:</span>{{ object.guild_description }}</p>
+                    <p><span>Description: </span>{{ object.guild_description }}</p>
                 </div>
 
                 <div class="guild-members-section">
@@ -92,19 +92,18 @@
                             <li>
                                 <div class="image-name-box">
                                     <a href="{% url 'game-details' game.slug %}"><img
-                                                src="{{ game.photo_url }}" alt="photo_url"></a>
+                                            src="{{ game.photo_url }}" alt="photo_url"></a>
                                 </div>
                             </li>
 
                         {% endfor %}
                     </ul>
-
                 </div>
-
             </div>
 
-            <div class="guild-messages">
-                {% if is_member %}
+            {% if is_member %}
+                <div class="guild-messages">
+
                     <!-- Start Add Comments Form -->
                     <form id="message-form" method="post" action="{% url 'guild-message' object.slug %} ">
                         {{ message_form }}
@@ -122,7 +121,8 @@
                     {% for message in guild_messages %}
                         <ul>
                             <li>
-                                <p id="message-author">{{ message.buddy }} wrote (<span>at {{ message.date_and_time_of_publication }}</span>):</p>
+                                <p id="message-author">{{ message.buddy }} wrote
+                                    (<span>at {{ message.date_and_time_of_publication }}</span>):</p>
 
                                 <p id="message-text">{{ message }}</p>
 
@@ -130,9 +130,10 @@
                             </li>
                         </ul>
                     {% endfor %}
-                {% else %}
-                {% endif %}
-            </div>
+                </div>
+            {% else %}
+            {% endif %}
+
         </div>
     </div>
 

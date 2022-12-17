@@ -189,7 +189,8 @@ class BuddyProfile(models.Model):
     def __str__(self):
         return self.nickname or "no nickname yet"
 
-    # TODO - check
+    # Below refers to BuddyGuild reversed relation 'members_set'
+    # and checks whether current BuddyProfile is member in any BuddyGuild
     def has_guild(self):
         members = self.members_set.all()
 

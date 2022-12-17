@@ -104,6 +104,46 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Logs to be produced when DEBUG is False
+if not DEBUG:
+    LOGGING = {
+        'version': 1,
+        'formatters': {
+            'verbose': {
+                'format': '{levelname} {asctime} {module} {process:d} {thread:d} {filename} {lineno} - {funcName} - {message}',
+                'style': '{',
+            },
+
+        },
+
+        'handlers': {
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'verbose'
+
+            },
+            'file': {
+                'level': 'DEBUG',
+                'class': 'logging.FileHandler',
+                'filename': "D:\DjangoProjects\Project\BoardGameBuddy\logs.txt",
+                'formatter': 'verbose'
+            }
+        },
+        'loggers': {
+            'django.request': {
+                'handlers': ['console', 'file'],
+                'level': 'DEBUG',
+                'propagate': False,
+            },
+        },
+        'root': {
+            'handlers': ['console', 'file'],
+            'level': 'DEBUG',
+        },
+
+    }
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -136,4 +176,4 @@ LOGIN_URL = reverse_lazy('account-login')
 # TODO -> change redirect links
 
 LOGOUT_REDIRECT_URL = reverse_lazy('home-page')
-LOGIN_REDIRECT_URL = reverse_lazy('home-page')
+# LOGIN_REDIRECT_URL = reverse_lazy('home-page')
