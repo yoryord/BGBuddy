@@ -20,7 +20,7 @@ class BuddyGuild(models.Model):
     )
 
     guild_picture = models.ImageField(
-        upload_to='mediafiles/guild_photos/',
+        upload_to='guild_photos',
         validators=(validate_file_size,),
         null=True,
         blank=True,
